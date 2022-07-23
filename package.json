@@ -1,0 +1,10 @@
+{
+  "name": "clean-node-api",
+  "version": "1.0.0",
+  "description": "NodeJs API with Typescript using the best practices",
+  "main": "index.js",
+  "repository": "https://github.com/jgsn13/clean-node-api",
+  "author": "Joaquim Gregório da Silva Neto <joaquim.ibi@gmail.com>",
+  "license": "GPL-2.0",
+  "private": false
+}
