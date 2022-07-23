@@ -6,5 +6,8 @@
   "repository": "https://github.com/jgsn13/clean-node-api",
   "author": "Joaquim Gregório da Silva Neto <joaquim.ibi@gmail.com>",
   "license": "GPL-2.0",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "git-commit-msg-linter": "^4.1.3"
+  }
 }
