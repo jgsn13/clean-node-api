@@ -1,0 +1,18 @@
+#+TITLE: Clean NodeJs API
+#+AUTHOR: Joaquim Gregório da Silva Neto
+* Setting up .gitconfig
+- Add these lines to your *.gitconfig* file:
+  #+begin_src toml
+[user]
+	email = <your-email>
+	name = <your-name>
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+[alias]
+	s = !git status -s
+	c = !git add . && git commit -m
+	amend = !git add . && git commit --amend --no-edit
+	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s %C(cyan)[%cn] %C(green)%cr'
+  #+end_src
