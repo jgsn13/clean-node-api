@@ -16,3 +16,7 @@
 	amend = !git add . && git commit --amend --no-edit
 	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s %C(cyan)[%cn] %C(green)%cr'
   #+end_src
+- You can add the *git-commit-msg-linter* package to standarlize your commit messages. This package will raise errors when you send a non-default commit message.
+* Typescript
+- First install *typescript* and *@types/node* as development dependencies.
+- In *tsconfig.json* file you must set *outDir*, *module*, *target*, *esModuleInterop* and *allowJs* for a basic typescript setup. You can generate the typescript config file with ~yarn tsc --init~.
