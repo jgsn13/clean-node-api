@@ -14,15 +14,14 @@
         "prepack": "pinst --disable",
         "postpack": "pinst --enable"
     },
-    "dependencies": {
-        "git-commit-msg-linter": "^4.1.3"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@types/node": "^18.0.6",
         "@typescript-eslint/eslint-plugin": "^5.30.7",
         "@typescript-eslint/parser": "^5.30.7",
         "eslint": "^8.20.0",
         "eslint-config-google": "^0.14.0",
+        "git-commit-msg-linter": "^4.1.3",
         "husky": "^8.0.1",
         "lint-staged": "^13.0.3",
         "typescript": "^4.7.4"
