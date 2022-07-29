@@ -50,3 +50,24 @@ node_modules
 dist
 build
   #+end_src
+* Husky and Lint Staged
+- First install *husky* and *lint-staged* packages as development dependencies.
+- They are usefull to check out files before commit them.
+- *Husky* will do this main task and *Lint Staged* will only lint staged files to guarantee that we will not have slowly commits.
+- .huskyrc.json:
+  #+begin_src json
+{
+    "hooks": {
+        "pre-commit": "lint-staged"
+    }
+}
+  #+end_src
+- .lintstagedrc.json:
+  #+begin_src json
+{
+    "*.ts": [
+        "eslint 'src/**' --fix",
+        "git add"
+    ]
+}
+  #+end_src
