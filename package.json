@@ -13,7 +13,8 @@
     "postinstall": "husky install",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
-    "test": "jest"
+    "test": "jest",
+    "test:staged": "jest"
   },
   "dependencies": {},
   "devDependencies": {
