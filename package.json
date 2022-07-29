@@ -1,17 +1,25 @@
 {
-  "name": "clean-node-api",
-  "version": "1.0.0",
-  "description": "NodeJs API with Typescript using the best practices",
-  "main": "index.js",
-  "repository": "https://github.com/jgsn13/clean-node-api",
-  "author": "Joaquim Gregório da Silva Neto <joaquim.ibi@gmail.com>",
-  "license": "GPL-2.0",
-  "private": false,
-  "dependencies": {
-    "git-commit-msg-linter": "^4.1.3"
-  },
-  "devDependencies": {
-    "@types/node": "^18.0.6",
-    "typescript": "^4.7.4"
-  }
+    "name": "clean-node-api",
+    "version": "1.0.0",
+    "description": "NodeJs API with Typescript using the best practices",
+    "main": "index.js",
+    "repository": "https://github.com/jgsn13/clean-node-api",
+    "author": "Joaquim Gregório da Silva Neto <joaquim.ibi@gmail.com>",
+    "license": "GPL-2.0",
+    "private": false,
+    "scripts": {
+        "lint": "eslint ./src --ext .ts",
+        "lint:fix": "eslint ./src --ext .ts --fix"
+    },
+    "dependencies": {
+      "git-commit-msg-linter": "^4.1.3"
+    },
+    "devDependencies": {
+      "@types/node": "^18.0.6",
+      "@typescript-eslint/eslint-plugin": "^5.30.7",
+      "@typescript-eslint/parser": "^5.30.7",
+      "eslint": "^8.20.0",
+      "eslint-config-google": "^0.14.0",
+      "typescript": "^4.7.4"
+    }
 }

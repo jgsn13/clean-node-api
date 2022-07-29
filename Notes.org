@@ -20,3 +20,33 @@
 * Typescript
 - First install *typescript* and *@types/node* as development dependencies.
 - In *tsconfig.json* file you must set *outDir*, *module*, *target*, *esModuleInterop* and *allowJs* for a basic typescript setup. You can generate the typescript config file with ~yarn tsc --init~.
+* Eslint
+- Here we will use the *eslint-config-google* package that comes with the following dependencies: *eslint*, *@typescript-eslint/eslint-plugin*, *@typescript-eslint/parser* and *eslint*.
+- The eslint config file should look like:
+  #+begin_src json
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "google"
+    ],
+    "rules": {
+        "object-curly-spacing": "off"
+    }
+}
+  #+end_src
+- And the *.eslintignore* file:
+  #+begin_src text
+node_modules
+dist
+build
+  #+end_src
