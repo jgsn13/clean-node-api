@@ -71,3 +71,19 @@ build
     ]
 }
   #+end_src
+* Jest
+- Install *jest*, *@types/jest*, *ts-jest* and *ts-node* as development dependencies.
+- Use ~jest --init~ command to generate a basic jest configuration file.
+- Make sure that in this file you have at least the following lines:
+  #+begin_src typescript
+export default {
+  collectCoverage: true,
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
+  coverageDirectory: 'coverage',
+  coverageProvider: 'v8',
+  roots: ['<rootDir>/src'],
+  transform: {
+    '.+\\.ts$': 'ts-jest',
+  },
+}
+  #+end_src
