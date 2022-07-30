@@ -10,6 +10,7 @@ import { InvalidParamError } from '../errors/invalid-param.error';
  */
 export class SignUpController implements Controller {
   /**
+   * SignUp controller
    * @param {EmailValidator} emailValidator - handle email validation
    */
   constructor(private readonly emailValidator: EmailValidator) {}
