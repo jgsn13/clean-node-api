@@ -1,3 +1,4 @@
+import { Controller } from '../protocols/controller.protocol';
 import { HttpRequest, HttpResponse } from '../protocols/http.protocol';
 import { MissingParamError } from '../errors/missing-param.error';
 import { badRequest } from '../helpers/http.helper';
@@ -5,7 +6,7 @@ import { badRequest } from '../helpers/http.helper';
 /**
  * SignUp controller class
  */
-export class SignUpController {
+export class SignUpController implements Controller {
   /**
    * Handle the request body
    * @param {HttpRequest} httpRequest - http request
