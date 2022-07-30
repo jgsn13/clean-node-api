@@ -1,5 +1,6 @@
 import { HttpRequest, HttpResponse } from '../protocols/http.protocol';
 import { MissingParamError } from '../errors/missing-param.error';
+import { badRequest } from '../helpers/http.helper';
 
 /**
  * SignUp controller class
@@ -7,27 +8,18 @@ import { MissingParamError } from '../errors/missing-param.error';
 export class SignUpController {
   /**
    * Handle the request body
-   * @param {any} httpRequest - http signup request
-   * @return {any}
+   * @param {HttpRequest} httpRequest - http request
+   * @return {HttpResponse}
    */
   public handle(httpRequest: HttpRequest): HttpResponse {
     if (!httpRequest.body.name) {
-      return {
-        statusCode: 400,
-        body: new MissingParamError('name'),
-      };
+      return badRequest(new MissingParamError('name'));
     }
 
     if (!httpRequest.body.email) {
-      return {
-        statusCode: 400,
-        body: new MissingParamError('email'),
-      };
+      return badRequest(new MissingParamError('email'));
     }
 
-    return {
-      statusCode: 400,
-      body: new MissingParamError('unknown'),
-    };
+    return badRequest(new MissingParamError('unknown'));
   }
 }
