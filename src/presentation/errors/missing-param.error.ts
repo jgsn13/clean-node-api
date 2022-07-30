@@ -3,7 +3,6 @@
  */
 export class MissingParamError extends Error {
   /**
-   * Handle the request body
    * @param {any} paramName - missing param name
    */
   constructor(paramName: string) {
