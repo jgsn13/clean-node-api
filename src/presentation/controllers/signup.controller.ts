@@ -1,3 +1,5 @@
+import { HttpRequest, HttpResponse } from '../protocols/http.protocol';
+
 /**
  * SignUp controller class
  */
@@ -7,7 +9,7 @@ export class SignUpController {
    * @param {any} httpRequest - http signup request
    * @return {any}
    */
-  public handle(httpRequest: any): any {
+  public handle(httpRequest: HttpRequest): HttpResponse {
     if (!httpRequest.body.name) {
       return {
         statusCode: 400,
@@ -21,5 +23,10 @@ export class SignUpController {
         body: new Error('Missing param: email'),
       };
     }
+
+    return {
+      statusCode: 400,
+      body: new Error('Internal Server Error'),
+    };
   }
 }
