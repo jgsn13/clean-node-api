@@ -7,7 +7,7 @@ interface SutTypes {
   emailValidatorStub: EmailValidator;
 }
 
-const makeSut = (): SutTypes => {
+const makeEmailValidator = (): EmailValidator => {
   /**
    * Email validator class
    */
@@ -21,7 +21,27 @@ const makeSut = (): SutTypes => {
       return true;
     }
   }
-  const emailValidatorStub = new EmailValidatorStub();
+  return new EmailValidatorStub();
+};
+
+const makeEmailValidatorWithError = (): EmailValidator => {
+  /**
+   * Email validator class
+   */
+  class EmailValidatorStub implements EmailValidator {
+    /**
+     * Validate an email and throws
+     * @param {string} email - Some email
+     */
+    public isValid(email: string): boolean {
+      throw new Error();
+    }
+  }
+  return new EmailValidatorStub();
+};
+
+const makeSut = (): SutTypes => {
+  const emailValidatorStub = makeEmailValidator();
   const sut = new SignUpController(emailValidatorStub);
 
   return {
@@ -89,7 +109,7 @@ describe('SignUp Controller', () => {
     const httpResponse = sut.handle(httpRequest);
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(
-        new MissingParamError('passwordConfirmation')
+      new MissingParamError('passwordConfirmation') // eslint-disable-line
     );
   });
 
@@ -131,19 +151,7 @@ describe('SignUp Controller', () => {
   });
 
   test('Should return 500 if EmailValidator throws', () => {
-    /**
-     * Email validator class
-     */
-    class EmailValidatorStub implements EmailValidator {
-      /**
-       * Validate an email and throws
-       * @param {string} email - Some email
-       */
-      public isValid(email: string): boolean {
-        throw new Error();
-      }
-    }
-    const emailValidatorStub = new EmailValidatorStub();
+    const emailValidatorStub = makeEmailValidatorWithError();
     const sut = new SignUpController(emailValidatorStub);
     const httpRequest = {
       body: {
