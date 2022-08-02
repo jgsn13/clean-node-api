@@ -80,7 +80,7 @@ describe('SignUp Controller', () => {
     expect(httpResponse.body).toEqual(new MissingParamError('password'));
   });
 
-  test('Should return 400 if no passwordConfirmation is provided', () => {
+  test('Should return 400 if no password confirmation is provided', () => {
     // sut = system under test
     const { sut } = makeSut();
     const httpRequest = {
@@ -94,6 +94,23 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(
       new MissingParamError('passwordConfirmation') // eslint-disable-line
+    );
+  });
+
+  test('Should return 400 if password confirmation fails', () => {
+    const { sut } = makeSut();
+    const httpRequest = {
+      body: {
+        name: 'any_name',
+        email: 'any_email@mail.com',
+        password: 'any_password',
+        passwordConfirmation: 'invalid_password',
+      },
+    };
+    const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(400);
+    expect(httpResponse.body).toEqual(
+      new InvalidParamError('passwordConfirmation') // eslint-disable-line
     );
   });
 
