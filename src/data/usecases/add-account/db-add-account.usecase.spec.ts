@@ -6,11 +6,11 @@ interface SutTypes {
   encrypterStub: Encrypter
 }
 
-const makeSut = (): SutTypes => {
+const makeEncrypter = (): Encrypter => {
   /**
    * Encrypter class
    */
-  class EncrypterStub {
+  class EncrypterStub implements Encrypter {
     /**
      * Generates a hashed value from a string
      * @param {string} value - string to be hashed
@@ -21,7 +21,12 @@ const makeSut = (): SutTypes => {
     }
   }
 
-  const encrypterStub = new EncrypterStub();
+  return new EncrypterStub();
+};
+
+const makeSut = (): SutTypes => {
+  const encrypterStub = makeEncrypter();
+
   const sut = new DbAddAccount(encrypterStub);
 
   return { sut, encrypterStub };
