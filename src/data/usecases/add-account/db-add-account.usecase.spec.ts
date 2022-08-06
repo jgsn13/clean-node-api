@@ -3,7 +3,7 @@ import { Encrypter } from '../../protocols/encrypter.protocol';
 
 interface SutTypes {
   sut: DbAddAccount;
-  encrypterStub: Encrypter
+  encrypterStub: Encrypter;
 }
 
 const makeEncrypter = (): Encrypter => {
@@ -43,5 +43,21 @@ describe('DbAddAccount Usecase', () => {
     };
     await sut.add(accountData);
     expect(encryptSpy).toHaveBeenCalledWith('valid_password');
+  });
+
+  test('Should throw if Encrypter throws', async () => {
+    const { sut, encrypterStub } = makeSut();
+    jest
+      .spyOn(encrypterStub, 'encrypt')
+      .mockReturnValueOnce(
+        new Promise((_resolve, reject) => reject(new Error()))
+      );
+    const accountData = {
+      name: 'valid_name',
+      email: 'valid_email',
+      password: 'valid_password',
+    };
+    const promise = sut.add(accountData);
+    await expect(promise).rejects.toThrow();
   });
 });
