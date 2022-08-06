@@ -28,13 +28,11 @@ export class DbAddAccount implements AddAccount {
 
     // NOTE: here Object.assign({}, accountData, { password: hashedPassword })
     // can be used instead of the destructuring.
-    await this.addAccountRepository.add({
+    const account = await this.addAccountRepository.add({
       ...accountData,
       password: hashedPassword,
     });
 
-    return new Promise((resolve) =>
-      resolve({ id: 'valid_id', ...accountData })
-    );
+    return account;
   }
 }
