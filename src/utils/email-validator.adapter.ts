@@ -1,6 +1,7 @@
 import {
   EmailValidator,
 } from '../presentation/protocols/email-validator.protocol';
+import validator from 'validator';
 
 /**
  * Email validator adapter class
@@ -12,6 +13,6 @@ export class EmailValidatorAdapter implements EmailValidator {
    * @return {boolean}
    */
   public isValid(email: string): boolean {
-    return false;
+    return validator.isEmail(email);
   }
 }
