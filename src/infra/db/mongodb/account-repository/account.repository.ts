@@ -6,7 +6,6 @@ import {
 } from '../../../../domain/usecases/add-account.usecase';
 import { AccountModel } from '../../../../domain/models/account.model';
 import { MongoHelper } from '../helpers/mongo.helper';
-import { Document, WithId } from 'mongodb';
 
 /**
  * MongoDB Account Repository class
@@ -23,11 +22,6 @@ export class AccountMongoRepository implements AddAccountRepository {
     const insertedAccount = await accountCollection.findOne({
       _id: result.insertedId,
     });
-    const { _id, ...accountWithoutId } = insertedAccount as WithId<Document>;
-    const parsedAccount = Object.assign({}, accountWithoutId, {
-      id: _id,
-    }) as unknown as AccountModel;
-
-    return parsedAccount;
+    return MongoHelper.map<AccountModel>(insertedAccount);
   }
 }
