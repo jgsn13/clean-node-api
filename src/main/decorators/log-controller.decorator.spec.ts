@@ -5,31 +5,49 @@ import {
   HttpResponse,
 } from '../../presentation/protocols';
 
-describe('LogController Decorator', () => {
-  test('Should call controller handle', async () => {
-    /**
-     * Controller Stub class
-     */
-    class ControllerStub implements Controller {
+interface SutTypes {
+  sut: LogControllerDecorator;
+  controllerStub: Controller;
+}
+
+const makeController = (): Controller => {
+  /**
+   * Controller Stub class
+   */
+  class ControllerStub implements Controller {
     /**
      * Handle the request body
      * @param {HttpRequest} httpRequest - http request
      * @return {Promise<HttpResponse>}
      */
-      public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-        const httpResponse: HttpResponse = {
-          statusCode: 200,
-          body: {
-            name: 'any_name',
-          },
-        };
-        return new Promise((resolve) => resolve(httpResponse));
-      }
+    public async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+      const httpResponse: HttpResponse = {
+        statusCode: 200,
+        body: {
+          name: 'any_name',
+        },
+      };
+      return new Promise((resolve) => resolve(httpResponse));
     }
+  }
 
-    const controllerStub = new ControllerStub();
+  return new ControllerStub();
+};
+
+const makeSut = (): SutTypes => {
+  const controllerStub = makeController();
+  const sut = new LogControllerDecorator(controllerStub);
+
+  return {
+    sut,
+    controllerStub,
+  };
+};
+
+describe('LogController Decorator', () => {
+  test('Should call controller handle', async () => {
+    const { sut, controllerStub } = makeSut();
     const handleSpy = jest.spyOn(controllerStub, 'handle');
-    const sut = new LogControllerDecorator(controllerStub);
     const httpRequest: HttpRequest = {
       body: {
         name: 'any_name',
@@ -42,3 +60,4 @@ describe('LogController Decorator', () => {
     expect(handleSpy).toHaveBeenCalledWith(httpRequest);
   });
 });
+
